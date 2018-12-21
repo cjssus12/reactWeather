@@ -1,21 +1,41 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React , {Component} from 'react';
+import {StyleSheet, Text, View, Image, ActivityInicator} from 'react-native';
+import Weather from './commponents/Weather'
 
-export default class App extends React.Component {
-  render() {
+class App extends Component {
+  state = {
+    isLoaded:false
+  };
+
+  render(){
+    const {isLoaded}= this.state;
     return (
       <View style={styles.container}>
-        <Text>나는 나를 사랑한다!</Text>
+        {isLoaded ? null : ( 
+      <Weather/>
+      )}   
       </View>
-    );
+    )
   }
-}
+} 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  container : {
+    flex:1,
+    backgroundColor:"#fff"
   },
-});
+
+  loading: {
+    flex:1,
+    backgroundColor:"#FDF6aa",
+    justifyContent:"flex-end",
+    paddingLeft:25
+  },
+
+  loadingText:{
+    fontSize:38,
+    marginBottom:100
+  }
+})
+
+export default App;
